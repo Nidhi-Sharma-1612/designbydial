@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Design By Dial
+
+Marketing and lead-gen website for **Design By Dial**, a studio that builds direct-booking
+websites for vacation rental / short-term rental (STR) operators — integrated with the
+Channel Manager (Hostaway, Guesty, Lodgify) the client already uses.
+
+Built with Next.js (App Router), React, TypeScript, and Tailwind CSS v4.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint    # eslint
+```
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local` and fill in the values you have:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable                     | Purpose                                                                                                                 |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `RESEND_API_KEY`             | Sends the contact-form notification email via [Resend](https://resend.com).                                             |
+| `RESEND_FROM_EMAIL`          | Verified sender address for outgoing notification emails.                                                               |
+| `CONTACT_NOTIFICATION_EMAIL` | Inbox that receives new contact-form submissions.                                                                       |
+| `NEXT_PUBLIC_CALCOM_LINK`    | [Cal.com](https://cal.com) event link (e.g. `username/consultation`) that powers the booking embed on the Contact page. |
 
-## Deploy on Vercel
+The contact form and Cal.com embed both degrade gracefully with a clear placeholder state
+if their variables aren't set — the site still builds and runs without them.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/                Routes (App Router) — one folder per page, plus API routes
+  components/
+    ui/                Design-system primitives (Button, Card, Section, NavBar, ...)
+    sections/          Homepage sections (Hero, PortfolioHighlight, TestimonialCarousel, ...)
+    forms/             Contact form
+  content/             Typed content files (portfolio, testimonials, pricing, FAQ, stats)
+  lib/                 Shared utilities (metadata builder, JSON-LD schema, hooks)
+```
+
+Page copy and structured data (portfolio projects, testimonials, pricing tiers, FAQs) live in
+`src/content/*.ts` as typed data, not hardcoded in components — update content there rather
+than in the page files.
+
+## Tech Stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (CSS-first `@theme` config in `src/app/globals.css`)
+- **React Hook Form** + **Zod** for form validation
+- **Resend** for contact-form email delivery
+- **Cal.com embed** for consultation booking
