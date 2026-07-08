@@ -29,7 +29,7 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
             <Button href="/portfolio" size="lg" variant="outline-ink">
               View Portfolio

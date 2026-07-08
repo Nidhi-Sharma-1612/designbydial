@@ -37,7 +37,7 @@ export function StickyMobileCta() {
           <Phone className="h-5 w-5" />
         </a>
         <Button href="/contact" size="md" className="flex-1">
-          Book a Free Consultation
+          Request a Free Consultation
         </Button>
       </div>
     </div>

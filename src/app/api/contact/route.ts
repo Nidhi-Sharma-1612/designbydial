@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { contactSchema } from "@/lib/contactSchema";
 
 export async function POST(request: Request) {
@@ -11,22 +11,30 @@ export async function POST(request: Request) {
   }
 
   const { name, email, phone, channelManager, message } = parsed.data;
-  const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = process.env.SMTP_PORT;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
   const notifyEmail = process.env.CONTACT_NOTIFICATION_EMAIL;
 
-  if (!apiKey || !fromEmail || !notifyEmail) {
+  if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !notifyEmail) {
     console.warn(
-      "Contact form submission received but Resend is not configured:",
+      "Contact form submission received but SMTP is not configured:",
       { name, email, phone, channelManager, message }
     );
     return NextResponse.json({ ok: true, delivered: false });
   }
 
   try {
-    const resend = new Resend(apiKey);
-    await resend.emails.send({
-      from: fromEmail,
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: Number(smtpPort),
+      secure: Number(smtpPort) === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+    });
+
+    await transporter.sendMail({
+      from: smtpUser,
       to: notifyEmail,
       replyTo: email,
       subject: `New consultation request from ${name}`,

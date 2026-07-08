@@ -94,12 +94,12 @@ export default function PricingPage() {
             Not sure which package fits?
           </h2>
           <p className="mt-4 text-white/70">
-            Book a free consultation and we&apos;ll recommend the right tier for your
+            Request a free consultation and we&apos;ll recommend the right tier for your
             portfolio — no pressure, no obligation.
           </p>
           <div className="mt-8">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
         </Reveal>

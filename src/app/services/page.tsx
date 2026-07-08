@@ -208,7 +208,7 @@ export default function ServicesPage() {
           </p>
           <div className="mt-8">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
         </Reveal>

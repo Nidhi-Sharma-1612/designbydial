@@ -33,13 +33,14 @@ cp .env.example .env.local
 
 | Variable                     | Purpose                                                                                                                 |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `RESEND_API_KEY`             | Sends the contact-form notification email via [Resend](https://resend.com).                                             |
-| `RESEND_FROM_EMAIL`          | Verified sender address for outgoing notification emails.                                                               |
+| `SMTP_HOST`                  | SMTP server host, e.g. `smtp.gmail.com`.                                                                                 |
+| `SMTP_PORT`                  | SMTP server port — `587` (STARTTLS) or `465` (SSL).                                                                     |
+| `SMTP_USER`                  | SMTP account username (e.g. your Gmail address).                                                                        |
+| `SMTP_PASS`                  | SMTP account password. For Gmail, use an [App Password](https://myaccount.google.com/apppasswords), not your login password. |
 | `CONTACT_NOTIFICATION_EMAIL` | Inbox that receives new contact-form submissions.                                                                       |
-| `NEXT_PUBLIC_CALCOM_LINK`    | [Cal.com](https://cal.com) event link (e.g. `username/consultation`) that powers the booking embed on the Contact page. |
 
-The contact form and Cal.com embed both degrade gracefully with a clear placeholder state
-if their variables aren't set — the site still builds and runs without them.
+The contact form degrades gracefully with a clear "not configured" fallback if these
+variables aren't set — the site still builds and runs without them.
 
 ## Project Structure
 
@@ -63,5 +64,4 @@ than in the page files.
 - **Next.js 16** (App Router) + **React 19** + **TypeScript**
 - **Tailwind CSS v4** (CSS-first `@theme` config in `src/app/globals.css`)
 - **React Hook Form** + **Zod** for form validation
-- **Resend** for contact-form email delivery
-- **Cal.com embed** for consultation booking
+- **Nodemailer** (SMTP) for contact-form email delivery

@@ -16,7 +16,7 @@ export function FinalCtaBand() {
             Ready to own your direct bookings?
           </h2>
           <p className="mt-4 max-w-md text-white/70">
-            Book a free consultation and we&apos;ll show you exactly how a
+            Request a free consultation and we&apos;ll show you exactly how a
             direct booking website fits into your current Channel Manager
             setup.
           </p>

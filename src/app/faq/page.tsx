@@ -41,12 +41,12 @@ export default function FaqPage() {
             Still have questions?
           </h2>
           <p className="mt-4 text-white/70">
-            Book a free consultation and we&apos;ll walk you through exactly how a direct
+            Request a free consultation and we&apos;ll walk you through exactly how a direct
             booking website would work for your properties.
           </p>
           <div className="mt-8">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
         </Reveal>

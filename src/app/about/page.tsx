@@ -96,12 +96,12 @@ export default function AboutPage() {
             Let&apos;s build your direct booking website
           </h2>
           <p className="mt-4 text-white/70">
-            Book a free consultation and see how a custom, Channel Manager-integrated
+            Request a free consultation and see how a custom, Channel Manager-integrated
             website could work for your properties.
           </p>
           <div className="mt-8">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
         </Reveal>

@@ -105,7 +105,7 @@ export function ContactForm({ variant = "full" }: { variant?: "compact" | "full"
 
       <Button type="submit" size="lg" className="w-full" disabled={status === "submitting"}>
         {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
-        Book a Free Consultation
+        Request a Free Consultation
       </Button>
 
       {status === "error" && (

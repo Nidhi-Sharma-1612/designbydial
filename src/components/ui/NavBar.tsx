@@ -65,7 +65,7 @@ export function NavBar() {
               +1 918 238 7776
             </a>
             <Button href="/contact" size="md">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
 
@@ -105,7 +105,7 @@ export function NavBar() {
               +1 918 238 7776
             </a>
             <Button href="/contact" size="md" className="w-full">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </Container>
         </div>

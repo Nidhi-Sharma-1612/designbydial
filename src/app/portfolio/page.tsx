@@ -148,12 +148,12 @@ export default function PortfolioPage() {
             Ready to be our next success story?
           </h2>
           <p className="mt-4 text-white/70">
-            Book a free consultation and let&apos;s talk about what a direct booking website
+            Request a free consultation and let&apos;s talk about what a direct booking website
             could do for your properties.
           </p>
           <div className="mt-8">
             <Button href="/contact" size="lg">
-              Book a Free Consultation
+              Request a Free Consultation
             </Button>
           </div>
         </Reveal>
