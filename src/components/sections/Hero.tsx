@@ -22,10 +22,10 @@ export function Hero() {
             <span className="text-gradient-cyan">Direct Bookings</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-body">
-            We build high-converting direct booking websites for vacation
-            rental operators &mdash; fully integrated with your Channel
-            Manager (Hostaway, Guesty, Lodgify) so availability and pricing
-            stay in sync automatically.
+            We build high-converting direct booking websites for vacation rental
+            operators &mdash; fully integrated with your Channel Manager
+            (Hostaway, Guesty, Lodgify) so availability and pricing stay in sync
+            automatically.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact" size="lg">
@@ -42,7 +42,9 @@ export function Hero() {
                   <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
               </div>
-              <span className="font-semibold text-ink">98% client satisfaction</span>
+              <span className="font-semibold text-ink">
+                98% client satisfaction
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <AvatarCluster />

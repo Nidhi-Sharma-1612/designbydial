@@ -1,4 +1,12 @@
-export type ChannelManager = "Hostaway" | "Guesty" | "Lodgify" | "Other";
+export type ChannelManager =
+  | "Hostaway"
+  | "Guesty"
+  | "Guesty for Hosts"
+  | "Lodgify"
+  | "OwnerRez"
+  | "Hostfully"
+  | "Hospitable"
+  | "Other";
 
 export type ResultStat = {
   label: string;

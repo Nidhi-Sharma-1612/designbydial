@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
   }
 
-  const { name, email, phone, channelManager, message } = parsed.data;
+  const { name, email, phone, channelManager, channelManagerOther, message } = parsed.data;
   const smtpHost = process.env.SMTP_HOST;
   const smtpPort = process.env.SMTP_PORT;
   const smtpUser = process.env.SMTP_USER;
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !notifyEmail) {
     console.warn(
       "Contact form submission received but SMTP is not configured:",
-      { name, email, phone, channelManager, message }
+      { name, email, phone, channelManager, channelManagerOther, message }
     );
     return NextResponse.json({ ok: true, delivered: false });
   }
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         `Name: ${name}`,
         `Email: ${email}`,
         `Phone: ${phone || "—"}`,
-        `Channel Manager: ${channelManager}`,
+        `Channel Manager: ${channelManager}${channelManager === "Other" && channelManagerOther ? ` (${channelManagerOther})` : ""}`,
         `Message: ${message || "—"}`,
       ].join("\n"),
     });

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -20,11 +20,14 @@ export function ContactForm({ variant = "full" }: { variant?: "compact" | "full"
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: { channelManager: "Not yet" },
   });
+
+  const channelManager = useWatch({ control, name: "channelManager" });
 
   async function onSubmit(values: ContactFormValues) {
     setStatus("submitting");
@@ -86,12 +89,26 @@ export function ContactForm({ variant = "full" }: { variant?: "compact" | "full"
 
       <select {...register("channelManager")} className={inputClasses} aria-label="Channel Manager">
         <option value="Not yet">Do you use a Channel Manager?</option>
-        {CHANNEL_MANAGER_OPTIONS.map((cm) => (
+        {CHANNEL_MANAGER_OPTIONS.filter((cm) => cm !== "Not yet").map((cm) => (
           <option key={cm} value={cm}>
             {cm}
           </option>
         ))}
       </select>
+
+      {channelManager === "Other" && (
+        <div>
+          <input
+            {...register("channelManagerOther")}
+            placeholder="Which Channel Manager do you use?"
+            className={inputClasses}
+            aria-label="Other Channel Manager"
+          />
+          {errors.channelManagerOther && (
+            <p className="mt-1 text-xs text-coral">{errors.channelManagerOther.message}</p>
+          )}
+        </div>
+      )}
 
       {variant === "full" && (
         <textarea

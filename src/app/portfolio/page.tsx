@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ArrowUpRight, Quote, TrendingUp } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Blob } from "@/components/ui/Blob";
-import { JsonLd } from "@/components/JsonLd";
 import { portfolioProjects } from "@/content/portfolio";
-import { testimonials } from "@/content/testimonials";
-import { reviewsSchema } from "@/lib/schema";
-import { getInitials, colorForName } from "@/lib/initials";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -26,7 +22,6 @@ export const metadata: Metadata = buildMetadata({
 export default function PortfolioPage() {
   return (
     <>
-      <JsonLd data={reviewsSchema(testimonials)} />
       <PageHeader
         eyebrow="Portfolio"
         title="Real projects. Real direct bookings."
@@ -79,59 +74,6 @@ export default function PortfolioPage() {
                       View Project{" "}
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
-                  )}
-                </div>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section tone="tint">
-        <Reveal className="text-center">
-          <h2 className="font-display text-3xl font-bold md:text-4xl">Client Stories</h2>
-        </Reveal>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t, index) => (
-            <Reveal key={`${t.authorName}-${t.companyName}`} delay={(index % 3) * 80}>
-              <Card className="flex h-full flex-col">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-start/10">
-                    <Quote className="h-5 w-5 text-cyan-end" />
-                  </div>
-                  <div className="flex gap-1 text-coral">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                </div>
-
-                <p className="mt-5 flex-1 text-sm leading-relaxed text-ink">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${colorForName(
-                        t.companyName
-                      )}`}
-                    >
-                      {getInitials(t.companyName)}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-ink">{t.authorName}</p>
-                      <p className="text-xs text-body">
-                        {t.authorRole}, {t.companyName}
-                      </p>
-                    </div>
-                  </div>
-
-                  {t.highlightStat && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-coral/10 px-2.5 py-1 font-accent text-xs font-bold text-coral-hover">
-                      <TrendingUp className="h-3.5 w-3.5" />
-                      {t.highlightStat}
-                    </span>
                   )}
                 </div>
               </Card>
