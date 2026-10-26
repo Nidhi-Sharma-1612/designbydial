@@ -23,6 +23,8 @@ export type PortfolioProject = {
   solution: string;
   results: ResultStat[];
   heroImage: string;
+  /** Full-page screenshot for the hover-to-scroll card preview. */
+  scrollImage?: { src: string; width: number; height: number };
   liveUrl?: string;
   featured: boolean;
 };

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
+import { ScrollPreview } from "@/components/ui/ScrollPreview";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Blob } from "@/components/ui/Blob";
@@ -33,15 +33,7 @@ export default function PortfolioPage() {
           {portfolioProjects.map((project, index) => (
             <Reveal key={project.slug} delay={(index % 2) * 100}>
               <Card className="group h-full p-0 overflow-hidden">
-                <div className="relative h-64 w-full overflow-hidden">
-                  <Image
-                    src={project.heroImage}
-                    alt={project.projectName}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
+                <ScrollPreview project={project} sizes="(min-width: 768px) 50vw, 100vw" className="h-64" />
                 <div className="p-6">
                   <span className="text-xs font-semibold uppercase tracking-wide text-cyan-end">
                     {project.category}

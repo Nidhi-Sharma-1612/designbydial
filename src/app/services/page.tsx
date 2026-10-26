@@ -47,7 +47,7 @@ const SERVICES: {
       "Fast, performance-first development",
       "Mobile responsive on every device",
     ],
-    proof: { type: "quote", slug: "our-whistler-retreat" },
+    proof: { type: "stat", value: stats[1].value, suffix: stats[1].suffix, label: "Client satisfaction" },
   },
   {
     id: "channel-manager",
@@ -60,7 +60,7 @@ const SERVICES: {
       "No need to change your existing Channel Manager",
       "Guests book directly through your integrated system",
     ],
-    proof: { type: "quote", slug: "harriscove" },
+    proof: { type: "stat", value: String(channelManagers.length), label: "Channel managers supported" },
   },
   {
     id: "seo",
@@ -84,7 +84,7 @@ const SERVICES: {
     description:
       "Brand systems and visual identity that make your properties feel unforgettable to high-value guests.",
     points: ["Logo & identity systems", "Consistent visual language", "Premium, hospitality-grade presentation"],
-    proof: { type: "quote", slug: "laquell" },
+    proof: { type: "quote", slug: "king-rental-homes" },
   },
   {
     id: "support",
